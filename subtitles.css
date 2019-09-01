@@ -1,0 +1,20 @@
+#subtitles {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: calc(100vw - 60px);
+  z-index: 1;
+
+  padding: 20px;
+  pointer-events: none;
+
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  background-color: rgba(0,0,0,.7);
+}
+
+#subtitles #interim_text {
+  opacity: .6;
+}
