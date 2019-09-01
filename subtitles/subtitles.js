@@ -4,6 +4,8 @@
   var start_timestamp;
   var final_text_el;
   var interim_text_el;
+  var subtitle_container_el;
+  var is_visible = true;
 
   setup();
   start();
@@ -58,6 +60,13 @@
         final_text.innerHTML = linebreak(final_transcript);
         interim_text.innerHTML = linebreak(interim_transcript);
       };
+
+      document.addEventListener('keydown', function(event) {
+        if(event.key === 't') {
+          is_visible = !is_visible;
+          subtitle_container_el.classList.toggle('hidden');
+        }
+      });
     }
   }
 
@@ -70,8 +79,8 @@
   }
 
   function createHTML() {
-    var subtitleContainer = document.createElement('div');
-    subtitleContainer.setAttribute('id', 'subtitles');
+    subtitle_container_el = document.createElement('div');
+    subtitle_container_el.setAttribute('id', 'subtitles');
 
     final_text_el = document.createElement('span');
     final_text_el.setAttribute('id', 'final_text');
@@ -79,10 +88,10 @@
     interim_text_el = document.createElement('span');
     interim_text_el.setAttribute('id', 'interim_text');
 
-    subtitleContainer.appendChild(final_text_el);
-    subtitleContainer.appendChild(interim_text_el);
+    subtitle_container_el.appendChild(final_text_el);
+    subtitle_container_el.appendChild(interim_text_el);
 
-    document.body.appendChild(subtitleContainer);
+    document.body.appendChild(subtitle_container_el);
   }
 
   var two_line = /\n\n/g;
