@@ -28,9 +28,11 @@ On load, this plugin will inject the following HTML at the end of your presentat
 
 ```html
 <div id="subtitles-container">
-  <div id="subtitles">
-    <span id="final_text"></span>
-    <span id="interim_text"></span>
+  <div id="subtitles-inner-container">
+    <div id="subtitles">
+      <span id="final_text"></span>
+      <span id="interim_text"></span>
+    </div>
   </div>
 </div>
 ```
