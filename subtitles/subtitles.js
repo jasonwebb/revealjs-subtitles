@@ -63,8 +63,7 @@
 
       document.addEventListener('keydown', function(event) {
         if(event.key === 't') {
-          is_visible = !is_visible;
-          subtitle_container_el.classList.toggle('hidden');
+          toggleVisibility();
         }
       });
     }
@@ -78,9 +77,27 @@
     recognition.stop();
   }
 
+  /*
+    Constructs the following markup structures:
+
+    <div id="subtitles-container">
+      <div id="subtitles-inner-container">
+        <div id="subtitles">
+          <span id="final_text"></span>
+          <span id="interim_text"></span>
+        </div>
+      </div>
+    </div>
+  */
   function createHTML() {
     subtitle_container_el = document.createElement('div');
-    subtitle_container_el.setAttribute('id', 'subtitles');
+    subtitle_container_el.setAttribute('id', 'subtitles-container');
+
+    subtitles_inner_container_el = document.createElement('div');
+    subtitles_inner_container_el.setAttribute('id', 'subtitles-inner-container');
+
+    subtitles_el = document.createElement('div');
+    subtitles_el.setAttribute('id', 'subtitles');
 
     final_text_el = document.createElement('span');
     final_text_el.setAttribute('id', 'final_text');
@@ -88,10 +105,18 @@
     interim_text_el = document.createElement('span');
     interim_text_el.setAttribute('id', 'interim_text');
 
-    subtitle_container_el.appendChild(final_text_el);
-    subtitle_container_el.appendChild(interim_text_el);
+    subtitles_el.appendChild(final_text_el);
+    subtitles_el.appendChild(interim_text_el);
+
+    subtitles_inner_container_el.appendChild(subtitles_el);
+    subtitle_container_el.appendChild(subtitles_inner_container_el);
 
     document.body.appendChild(subtitle_container_el);
+  }
+
+  function toggleVisibility() {
+    is_visible = !is_visible;
+    subtitle_container_el.classList.toggle('hidden');
   }
 
   var two_line = /\n\n/g;
